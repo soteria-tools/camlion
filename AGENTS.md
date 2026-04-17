@@ -1,4 +1,4 @@
-# ocaml-ion — Agent Session Notes
+# camlion — Agent Session Notes
 
 ## Project Overview
 
@@ -27,7 +27,7 @@ lib/
   text.ml           — entry points: of_string, of_channel; post-parse validation
 test/
   test_ion_suite.ml — conformance test runner
-  test_ocaml_ion.ml — unit tests
+  test_camlion.ml — unit tests
 ```
 
 ## AST (ion.ml)

@@ -1,11 +1,11 @@
 (test
- (name test_ocaml_ion)
- (libraries ocaml_ion alcotest zarith))
+ (name test_camlion)
+ (libraries camlion alcotest zarith))
 
 (executable
  (name test_ion_suite)
- (libraries ocaml_ion alcotest))
+ (libraries camlion alcotest))
 
 (executable
  (name debug_test)
- (libraries ocaml_ion))
+ (libraries camlion))

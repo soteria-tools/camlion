@@ -1,5 +1,5 @@
 open Alcotest
-open Ocaml_ion
+open Camlion
 
 (* ------------------------------------------------------------------ *)
 (* Helpers                                                              *)

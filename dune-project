@@ -1,6 +1,6 @@
 (lang dune 3.21)
 
-(name ocaml-ion)
+(name camlion)
 
 (generate_opam_files true)
 
@@ -18,7 +18,7 @@
 (using menhir 2.1)
 
 (package
- (name ocaml-ion)
+ (name camlion)
  (synopsis "A parser for the Amazon Ion data format")
  (description
   "OCaml library for parsing the Ion data language (text format)")

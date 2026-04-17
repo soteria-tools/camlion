@@ -1,7 +1,7 @@
 (** Run the amazon-ion/ion-tests conformance suite (text format only).
     Good files must parse without exception; bad files must raise. *)
 
-open Ocaml_ion
+open Camlion
 
 (* -------------------------------------------------------------------------- *)
 (* Helpers                                                                     *)

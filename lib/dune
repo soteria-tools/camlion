@@ -1,6 +1,6 @@
 (library
- (public_name ocaml-ion)
- (name ocaml_ion)
+ (public_name camlion)
+ (name camlion)
  (libraries zarith)
  (modules ion text text_lexer text_parser))
 
