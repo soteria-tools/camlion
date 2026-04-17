@@ -1,3 +1,11 @@
 (library
  (public_name ocaml-ion)
- (name ocaml_ion))
+ (name ocaml_ion)
+ (libraries zarith)
+ (modules ion text text_lexer text_parser))
+
+(ocamllex text_lexer)
+
+(menhir
+ (modules text_parser)
+ (flags --explain))

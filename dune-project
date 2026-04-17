@@ -15,12 +15,19 @@
 
 (documentation https://url/to/documentation)
 
+(using menhir 2.1)
+
 (package
  (name ocaml-ion)
- (synopsis "A short synopsis")
- (description "A longer description")
- (depends ocaml)
+ (synopsis "A parser for the Amazon Ion data format")
+ (description
+  "OCaml library for parsing the Ion data language (text format)")
+ (depends
+  ocaml
+  (menhir
+   (>= 20230608))
+  (zarith
+   (>= 1.12))
+  (alcotest :with-test))
  (tags
-  ("add topics" "to describe" your project)))
-
-; See the complete stanza docs at https://dune.readthedocs.io/en/stable/reference/dune-project/index.html
+  ("ion" "parser" "data-format")))

@@ -1,0 +1,20 @@
+name: Build and test
+
+on: [ push, pull_request ]
+
+jobs:
+  build:
+    strategy:
+      matrix:
+        runs-on: [ ubuntu-latest ]
+    runs-on: ${{ matrix.runs-on }}
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v6
+        with:
+          submodules: "recursive"
+      - name: Use dune
+        uses: ocaml-dune/setup-dune@v2
+      - name: Run ion test suite
+        run: make ion-test-suite
