@@ -16,5 +16,8 @@ jobs:
           submodules: "recursive"
       - name: Use dune
         uses: ocaml-dune/setup-dune@v2
+
+      - name: Check formatting
+        run: dune tools exec build @fmt
       - name: Run ion test suite
         run: make ion-test-suite
