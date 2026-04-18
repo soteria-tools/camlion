@@ -1,4 +1,4 @@
-(** Run the amazon-ion/ion-tests conformance suite (text format only).
+(** Run the amazon-ion/ion-tests conformance suite (text + binary formats).
     Good files must parse without exception; bad files must raise. *)
 
 open Camlion
@@ -31,6 +31,9 @@ let is_ion_text name =
      transcoding which is not yet implemented. *)
   not (List.mem (Filename.basename name) ["utf16.ion"; "utf32.ion"])
 
+let is_ion_binary name =
+  Filename.check_suffix name ".10n"
+
 (** Strip [ion_tests_root] prefix for a short test name. *)
 let short_name path =
   let root = ion_tests_root ^ Filename.dir_sep in
@@ -47,7 +50,11 @@ let good_test path =
   let name = short_name path in
   Alcotest.test_case name `Quick (fun () ->
     let ic = open_in path in
-    match Text.of_channel ic with
+    let parse =
+      if Filename.check_suffix path ".10n" then Binary.of_channel
+      else Text.of_channel
+    in
+    match parse ic with
     | _ -> close_in ic
     | exception exn ->
       close_in_noerr ic;
@@ -58,7 +65,11 @@ let bad_test path =
   let name = short_name path in
   Alcotest.test_case name `Quick (fun () ->
     let ic = open_in path in
-    match Text.of_channel ic with
+    let parse =
+      if Filename.check_suffix path ".10n" then Binary.of_channel
+      else Text.of_channel
+    in
+    match parse ic with
     | _ ->
       close_in ic;
       Alcotest.failf "Expected parse failure but parsing succeeded"
@@ -73,8 +84,14 @@ let bad_test path =
 let () =
   let good_dir = Filename.concat ion_tests_root "good" in
   let bad_dir  = Filename.concat ion_tests_root "bad"  in
-  let good_files = collect_files is_ion_text good_dir in
-  let bad_files  = collect_files is_ion_text bad_dir  in
+  let good_files =
+    collect_files is_ion_text good_dir @
+    collect_files is_ion_binary good_dir
+  in
+  let bad_files =
+    collect_files is_ion_text bad_dir @
+    collect_files is_ion_binary bad_dir
+  in
   Alcotest.run "ion-tests conformance"
     [ "good", List.map good_test good_files
     ; "bad",  List.map bad_test  bad_files

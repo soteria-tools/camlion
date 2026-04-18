@@ -1,8 +1,8 @@
 (library
  (public_name camlion)
  (name camlion)
- (libraries zarith)
- (modules ion text text_lexer text_parser))
+ (libraries zarith parseff)
+ (modules ion text text_lexer text_parser binary))
 
 (ocamllex text_lexer)
 

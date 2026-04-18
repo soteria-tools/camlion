@@ -22,12 +22,14 @@
  (synopsis "A parser for the Amazon Ion data format")
  (description
   "OCaml library for parsing the Ion data language (text format)")
- (depends
-  ocaml
-  (menhir
-   (>= 20230608))
-  (zarith
-   (>= 1.12))
-  (alcotest :with-test))
+  (depends
+   ocaml
+   (menhir
+    (>= 20230608))
+   (zarith
+    (>= 1.12))
+   (parseff
+    (>= 0.1))
+   (alcotest :with-test))
  (tags
   ("ion" "parser" "data-format")))
